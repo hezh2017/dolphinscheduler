@@ -22,7 +22,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource(value = "master.properties")
+//@PropertySource(value = "master.properties")
 public class MasterConfig {
 
     @Value("${master.listen.port:5678}")

@@ -39,16 +39,20 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.dolphinscheduler.service.bean.SpringApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 /**
  *  netty executor manager
  */
 @Service
-public class NettyExecutorManager extends AbstractExecutorManager<Boolean>{
+public class NettyExecutorManager extends AbstractExecutorManager<Boolean> implements ApplicationContextAware {
 
     private final Logger logger = LoggerFactory.getLogger(NettyExecutorManager.class);
 
@@ -199,5 +203,15 @@ public class NettyExecutorManager extends AbstractExecutorManager<Boolean>{
 
     public NettyRemotingClient getNettyRemotingClient() {
         return nettyRemotingClient;
+    }
+
+    /**
+     *
+     * @param applicationContext
+     * @throws BeansException
+     */
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        SpringApplicationContext.applicationContext = applicationContext;
     }
 }

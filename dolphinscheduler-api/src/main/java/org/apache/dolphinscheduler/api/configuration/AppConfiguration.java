@@ -21,6 +21,8 @@ import org.apache.dolphinscheduler.api.interceptor.LoginHandlerInterceptor;
 
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -44,6 +46,8 @@ public class AppConfiguration implements WebMvcConfigurer {
   public static final String LOGIN_PATH_PATTERN = "/login";
   public static final String PATH_PATTERN = "/**";
   public static final String LOCALE_LANGUAGE_COOKIE = "language";
+
+  Logger logger = LoggerFactory.getLogger(this.getClass());
 
   @Bean
   public CorsFilter corsFilter() {
@@ -99,7 +103,9 @@ public class AppConfiguration implements WebMvcConfigurer {
     registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
     registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
     registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-    registry.addResourceHandler("/ui/**").addResourceLocations("file:ui/");
+    registry.addResourceHandler("/ui/**").addResourceLocations("classpath:/static/");
+
+    logger.info("---------------------------------- addResourceHandlers");
   }
 
   @Override

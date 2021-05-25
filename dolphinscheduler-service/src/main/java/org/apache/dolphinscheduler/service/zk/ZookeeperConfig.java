@@ -17,6 +17,7 @@
 package org.apache.dolphinscheduler.service.zk;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +25,12 @@ import org.springframework.stereotype.Component;
  * zookeeper conf
  */
 @Component
-@PropertySource("classpath:zookeeper.properties")
+//@PropertySource("classpath:zookeeper.properties")
 public class ZookeeperConfig {
 
     //zk connect config
-    @Value("${zookeeper.quorum}")
-    private String serverList;
+    @Value("${zookeeper.quorum:127.0.0.1:2181}")
+    private String serverList = "127.0.0.1:2181";
 
     @Value("${zookeeper.retry.base.sleep:100}")
     private int baseSleepTimeMs;

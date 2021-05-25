@@ -42,19 +42,21 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *  master server
  */
-@ComponentScan(value = "org.apache.dolphinscheduler", excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {
-                "org.apache.dolphinscheduler.server.worker.*",
-                "org.apache.dolphinscheduler.server.monitor.*",
-                "org.apache.dolphinscheduler.server.log.*"
-        })
-})
-@EnableTransactionManagement
+//@ComponentScan(value = "org.apache.dolphinscheduler", excludeFilters = {
+//        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {
+//                "org.apache.dolphinscheduler.server.worker.*",
+//                "org.apache.dolphinscheduler.server.monitor.*",
+//                "org.apache.dolphinscheduler.server.log.*"
+//        })
+//})
+//@EnableTransactionManagement
+@Component
 public class MasterServer implements IStoppable {
 
     /**
@@ -146,6 +148,9 @@ public class MasterServer implements IStoppable {
             }
         }));
 
+        logger.info("------------------------------------------------------------------");
+        logger.info("--------------------MASTER SERVER STARTED-------------------------");
+        logger.info("------------------------------------------------------------------");
     }
 
     /**

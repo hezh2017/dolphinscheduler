@@ -21,6 +21,7 @@ import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.dolphinscheduler.common.Constants;
+import org.apache.dolphinscheduler.dao.mapper.AlertMapper;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,6 +30,9 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 
 import javax.sql.DataSource;
 
@@ -51,9 +55,12 @@ public class ConnectionFactory extends SpringConnectionFactory {
 
     private ConnectionFactory() {
         try {
-            dataSource = buildDataSource();
+//            dataSource = buildDataSource();
             sqlSessionFactory = getSqlSessionFactory();
             sqlSessionTemplate = getSqlSessionTemplate();
+
+            //等3秒，等mapper加载完成
+            Thread.sleep(3000);
         } catch (Exception e) {
             logger.error("Initializing ConnectionFactory error", e);
             throw new RuntimeException(e);
@@ -70,9 +77,16 @@ public class ConnectionFactory extends SpringConnectionFactory {
      */
     private SqlSessionTemplate sqlSessionTemplate;
 
-    private DataSource dataSource;
+    public static DataSource dataSource;
 
     public DataSource getDataSource() {
+        while(dataSource == null) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return dataSource;
     }
 
@@ -102,14 +116,22 @@ public class ConnectionFactory extends SpringConnectionFactory {
         configuration.setEnvironment(environment);
         configuration.setLazyLoadingEnabled(true);
         configuration.addMappers("org.apache.dolphinscheduler.dao.mapper");
+
+//        configuration.addMapper(AlertMapper.class);
         configuration.addInterceptor(new PaginationInterceptor());
 
         MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setConfiguration(configuration);
         sqlSessionFactoryBean.setDataSource(getDataSource());
+        //add mapper
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("org/apache/dolphinscheduler/dao/mapper/*Mapper.xml"));
+        sqlSessionFactoryBean.setTypeAliasesPackage("org.apache.dolphinscheduler.dao.entity");
 
         sqlSessionFactoryBean.setTypeEnumsPackage("org.apache.dolphinscheduler.*.enums");
         sqlSessionFactory = sqlSessionFactoryBean.getObject();
+
+        logger.info("======================================: " + sqlSessionFactory.getConfiguration().getMapperRegistry().getMappers().size());
 
         return sqlSessionFactory;
 }

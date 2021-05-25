@@ -1,0 +1,13 @@
+/** Used to convert symbols to primitives and strings. */
+
+// Coerce regexes to strings and treat strings, primitives and objects,
+
+// Recursively compare arrays (susceptible to call stack limits).
+
+// Recursively compare objects (susceptible to call stack limits).
+
+// Recursively flatten arrays (susceptible to call stack limits).
+
+// Recursively merge objects and arrays (susceptible to call stack limits).
+
+// Recursively populate clone (susceptible to call stack limits).

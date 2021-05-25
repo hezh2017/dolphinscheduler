@@ -1,0 +1,3 @@
+// Distributed under an MIT license: https://codemirror.net/LICENSE
+
+// ref: http://web.archive.org/web/20160813185132/http://savage.net.au/SQL/sql-99.bnf.html#delimited%20identifier

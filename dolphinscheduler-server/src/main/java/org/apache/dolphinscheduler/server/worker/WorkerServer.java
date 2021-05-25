@@ -44,19 +44,21 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *  worker server
  */
-@ComponentScan(value = "org.apache.dolphinscheduler", excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {
-                "org.apache.dolphinscheduler.server.master.*",
-                "org.apache.dolphinscheduler.server.monitor.*",
-                "org.apache.dolphinscheduler.server.log.*"
-        })
-})
-@EnableTransactionManagement
+//@ComponentScan(value = "org.apache.dolphinscheduler", excludeFilters = {
+//        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {
+//                "org.apache.dolphinscheduler.server.master.*",
+//                "org.apache.dolphinscheduler.server.monitor.*",
+//                "org.apache.dolphinscheduler.server.log.*"
+//        })
+//})
+//@EnableTransactionManagement
+@Component
 public class WorkerServer implements IStoppable {
 
     /**
@@ -138,6 +140,10 @@ public class WorkerServer implements IStoppable {
                 close("shutdownHook");
             }
         }));
+
+        logger.info("------------------------------------------------------------------");
+        logger.info("--------------------WORKER SERVER STARTED-------------------------");
+        logger.info("------------------------------------------------------------------");
     }
 
     public void close(String cause) {

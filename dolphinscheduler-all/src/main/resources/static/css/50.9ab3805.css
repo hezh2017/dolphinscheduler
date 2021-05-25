@@ -1,0 +1,3 @@
+.wrap-table .table-box{overflow-y:scroll}.wrap-table .table-box .fixed{table-layout:auto}.wrap-table .table-box .fixed tr td:last-child,.wrap-table .table-box .fixed tr th:last-child{background:inherit;width:230px;height:40px;line-height:40px;border-left:1px solid #ecf3ff;position:absolute;right:0;z-index:2}.wrap-table .table-box .fixed tr td:last-child{border-bottom:1px solid #ecf3ff}.wrap-table .table-box .fixed tr td:nth-last-child(2),.wrap-table .table-box .fixed tr th:nth-last-child(2){padding-right:240px}
+
+/*# sourceMappingURL=50.9ab3805.css.map*/
