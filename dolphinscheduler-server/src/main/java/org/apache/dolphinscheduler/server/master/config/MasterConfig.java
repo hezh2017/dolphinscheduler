@@ -43,7 +43,7 @@ public class MasterConfig {
     @Value("${master.heartbeat.interval:10}")
     private int masterHeartbeatInterval;
 
-    @Value("${master.task.commit.retryTimes:5}")
+    @Value("${master.task.commit.retryTimes:3}")
     private int masterTaskCommitRetryTimes;
 
     @Value("${master.task.commit.interval:1000}")
