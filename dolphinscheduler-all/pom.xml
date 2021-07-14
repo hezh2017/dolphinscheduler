@@ -122,6 +122,7 @@
 
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
+        <!-- mvn compile package  spring-boot:repackage -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

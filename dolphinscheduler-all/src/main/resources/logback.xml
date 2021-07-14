@@ -101,7 +101,7 @@
         <appender-ref ref="TASKLOGFILE"/>
         <appender-ref ref="WORKERLOGFILE"/>
         <appender-ref ref="SKYWALKING-LOG"/>
-        <appender-ref ref="ALERTLOGFILE"/>
+<!--        <appender-ref ref="ALERTLOGFILE"/>-->
     </root>
 
 </configuration>
