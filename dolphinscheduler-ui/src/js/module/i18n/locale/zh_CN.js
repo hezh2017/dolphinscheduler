@@ -242,6 +242,7 @@ export default {
   crontab: 'crontab',
   'Failure Strategy': '失败策略',
   online: '上线',
+  'online tooltip': '上线 ==> 同时你必须上线[定时管理], 任务才会运行!',
   offline: '下线',
   'Task Status': '任务状态',
   'Process Instance': '工作流实例',

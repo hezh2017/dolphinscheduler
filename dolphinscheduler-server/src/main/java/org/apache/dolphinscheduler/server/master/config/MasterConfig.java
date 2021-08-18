@@ -49,10 +49,10 @@ public class MasterConfig {
     @Value("${master.task.commit.interval:1000}")
     private int masterTaskCommitInterval;
 
-    @Value("${master.max.cpuload.avg:-1}")
+    @Value("${master.max.cpuload.avg:98}")
     private double masterMaxCpuloadAvg;
 
-    @Value("${master.reserved.memory:0.3}")
+    @Value("${master.reserved.memory:0.1}")
     private double masterReservedMemory;
 
     public int getListenPort() {

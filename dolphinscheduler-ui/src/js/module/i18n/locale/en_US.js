@@ -242,6 +242,7 @@ export default {
   crontab: 'crontab',
   'Failure Strategy': 'Failure Strategy',
   online: 'online',
+  'online tooltip': 'online ==> And you must online the scheduler, then task will run!',
   offline: 'offline',
   'Task Status': 'Task Status',
   'Process Instance': 'Process Instance',

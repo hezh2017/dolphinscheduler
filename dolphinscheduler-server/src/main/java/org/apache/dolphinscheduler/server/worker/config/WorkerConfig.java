@@ -38,10 +38,10 @@ public class WorkerConfig {
     @Value("${worker.heartbeat.interval:10}")
     private int workerHeartbeatInterval;
 
-    @Value("${worker.max.cpuload.avg:-1}")
+    @Value("${worker.max.cpuload.avg:98}")
     private int workerMaxCpuloadAvg;
 
-    @Value("${worker.reserved.memory:0.3}")
+    @Value("${worker.reserved.memory:0.1}")
     private double workerReservedMemory;
 
     @Value("#{'${worker.groups:default}'.split(',')}")

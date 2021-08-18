@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.1.0 http://maven.apache.org/xsd/assembly-2.1.0.xsd">
+    <id>packaged</id>
+
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <baseDirectory>dolphinscheduler</baseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>application-prod.properties.template</include>
+            </includes>
+            <outputDirectory>config</outputDirectory>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>src/assembly/bin</directory>
+            <outputDirectory>bin</outputDirectory>
+            <lineEnding>unix</lineEnding>
+            <fileMode>0766</fileMode>
+        </fileSet>
+
+    </fileSets>
+
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.build.finalName}.jar</source>
+            <outputDirectory>module</outputDirectory>
+        </file>
+    </files>
+<!--    <dependencySets>-->
+<!--        <dependencySet>-->
+<!--            <outputDirectory>module/lib</outputDirectory>-->
+<!--            <unpack>false</unpack>-->
+<!--            <excludes>-->
+<!--                <exclude>com.vixtel:web-server</exclude>-->
+<!--            </excludes>-->
+<!--        </dependencySet>-->
+<!--    </dependencySets>-->
+</assembly>

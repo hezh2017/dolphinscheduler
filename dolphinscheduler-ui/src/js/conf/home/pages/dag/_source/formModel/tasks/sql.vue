@@ -97,7 +97,7 @@
     <m-list-box>
       <div slot="text">{{$t('SQL Statement')}}</div>
       <div slot="content">
-        <div class="form-mirror">
+        <div class="form-mirror" >
           <textarea
                   id="code-sql-mirror"
                   name="code-sql-mirror"

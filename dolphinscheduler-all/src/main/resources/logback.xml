@@ -61,7 +61,7 @@
         </filter> -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${log.base}/dolphinscheduler-worker.%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
-            <maxHistory>168</maxHistory>
+            <maxHistory>7</maxHistory>
             <maxFileSize>200MB</maxFileSize>
         </rollingPolicy>
         <encoder>
@@ -81,7 +81,7 @@
         <file>${log.base}/dolphinscheduler-alert.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>${log.base}/dolphinscheduler-alert.%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
-            <maxHistory>20</maxHistory>
+            <maxHistory>7</maxHistory>
             <maxFileSize>64MB</maxFileSize>
         </rollingPolicy>
         <encoder>
