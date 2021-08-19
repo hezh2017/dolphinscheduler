@@ -26,6 +26,7 @@ import org.apache.dolphinscheduler.server.worker.processor.TaskCallbackService;
 import org.apache.dolphinscheduler.service.bean.SpringApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -34,6 +35,7 @@ import java.util.Map;
  * Retry Report Task Status Thread
  */
 @Component
+@Order
 public class RetryReportTaskStatusThread implements Runnable {
 
     private final Logger logger = LoggerFactory.getLogger(RetryReportTaskStatusThread.class);

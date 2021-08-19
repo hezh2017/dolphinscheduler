@@ -6,12 +6,12 @@ echo DOLPHINPATH: %DOLPHINPATH%
 echo TARGETPATH: %TARGETPATH%
 
 @echo off
-if %DOLPHINPATH% == "" (
+if "%DOLPHINPATH%" == "" (
     echo "Error: Must assign input parameter: DOLPHINPATH"
     exit /B 1
 )
 
-if not exist %DOLPHINPATH% (
+if not exist "%DOLPHINPATH%" (
     echo "Error: Dolphinscheduler Directory not exist: %DOLPHINPATH%"
     exit /B 1
 ) else (
